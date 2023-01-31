@@ -99,7 +99,7 @@ func (r *Registry) checkConnectionUnauthenticated(ctx context.Context) error {
 	defer resp.Body.Close()
 
 	switch resp.StatusCode {
-	case http.StatusOK, http.StatusUnauthorized:
+	case http.StatusOK:
 		// We are just checking if the V2 endpoint exists. Do not care about authorization/authentication.
 		if registry, ok := resp.Header[http.CanonicalHeaderKey("Docker-Distribution-API-Version")]; ok {
 			if len(registry) > 0 && registry[0] == "registry/2.0" {
